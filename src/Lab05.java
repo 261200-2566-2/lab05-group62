@@ -2,23 +2,13 @@ import java.util.Scanner;
 
 public class Lab05 {
     interface Character {
-        static void equipMask(){
-
-        }
-        static void equipCape(){
-
-        }
-
-        static void equipBoots(){
-
-        }
-
-        static void equipWeapon(){
-
-        }
+        public void equipMask(Mask mask);
+        public void equipCape(Cape cape);
+        public void equipBoots(Boots boots);
+        public void equipWeapon(Weapon weapon);
     }
 
-    static class Heroes implements Character {
+    public static class Heroes implements Character {
         String name;
         static double atk = 100;
         static double def = 100;
@@ -30,25 +20,29 @@ public class Lab05 {
         public Heroes(String name) {
             this.name = name;
         }
-        public static void equipMask(Mask mask) {
+        @Override
+        public void equipMask(Mask mask) {
             equippedMask = mask;
             atk += mask.atkUp;
             def += mask.defUp;
             speed += mask.speedUp;
         }
-        public static void equipCape(Cape cape) {
+        @Override
+        public void equipCape(Cape cape) {
             equippedCape = cape;
             atk += cape.atkUp;
             def += cape.defUp;
             speed += cape.speedUp;
         }
-        public static void equipBoots(Boots boots) {
+        @Override
+        public void equipBoots(Boots boots) {
             equippedBoots = boots;
             atk += boots.atkUp;
             def += boots.defUp;
             speed += boots.speedUp;
         }
-        public static void equipWeapon(Weapon weapon) {
+        @Override
+        public void equipWeapon(Weapon weapon) {
             equippedWeapon = weapon;
             atk += weapon.atkUp;
             def += weapon.defUp;
@@ -56,7 +50,7 @@ public class Lab05 {
         }
     }
 
-    static class Villains implements Character {
+    public static class Villains implements Character {
         String name;
         static double atk = 100;
         static double def = 100;
@@ -68,25 +62,29 @@ public class Lab05 {
         public Villains(String name) {
             this.name = name;
         }
-        public static void equipMask(Mask mask) {
+        @Override
+        public void equipMask(Mask mask) {
             equippedMask = mask;
             atk += mask.atkUp;
             def += mask.defUp;
             speed += mask.speedUp;
         }
-        public static void equipCape(Cape cape) {
+        @Override
+        public void equipCape(Cape cape) {
             equippedCape = cape;
             atk += cape.atkUp;
             def += cape.defUp;
             speed += cape.speedUp;
         }
-        public static void equipBoots(Boots boots) {
+        @Override
+        public void equipBoots(Boots boots) {
             equippedBoots = boots;
             atk += boots.atkUp;
             def += boots.defUp;
             speed += boots.speedUp;
         }
-        public static void equipWeapon(Weapon weapon) {
+        @Override
+        public void equipWeapon(Weapon weapon) {
             equippedWeapon = weapon;
             atk += weapon.atkUp;
             def += weapon.defUp;
@@ -153,7 +151,7 @@ public class Lab05 {
             this.weaponName = weaponName;
         }
     }
-    public static void MaskSelect(String role) {
+    public static void MaskSelect(String role, Heroes H, Villains V) {
         Scanner s = new Scanner(System.in);
         System.out.println("***************************************************************");
         System.out.println("Pick a mask\n1. Mask Of The Dragon\n2. Mask Of The Ocean\n3. Mask Of The Yggdrasil\n4. Mask Of The Solar\n5. Mask Of The Luna");
@@ -172,20 +170,20 @@ public class Lab05 {
         Mask solarMask = new Mask(100,0,50,"Mask Of The Solar");
         Mask lunaMask = new Mask(100,0,50,"Mask Of The Luna");
         if(role.equals("Hero")){
-            if(maskNum == 1) Heroes.equipMask(dragonMask);
-            else if(maskNum == 2) Heroes.equipMask(oceanMask);
-            else if(maskNum == 3) Heroes.equipMask(yggdrasilMask);
-            else if(maskNum == 4) Heroes.equipMask(solarMask);
-            else Heroes.equipMask(lunaMask);
+            if(maskNum == 1) H.equipMask(dragonMask);
+            else if(maskNum == 2) H.equipMask(oceanMask);
+            else if(maskNum == 3) H.equipMask(yggdrasilMask);
+            else if(maskNum == 4) H.equipMask(solarMask);
+            else H.equipMask(lunaMask);
         }else{
-            if(maskNum == 1) Villains.equipMask(dragonMask);
-            else if(maskNum == 2) Villains.equipMask(oceanMask);
-            else if(maskNum == 3) Villains.equipMask(yggdrasilMask);
-            else if(maskNum == 4) Villains.equipMask(solarMask);
-            else Villains.equipMask(lunaMask);
+            if(maskNum == 1) V.equipMask(dragonMask);
+            else if(maskNum == 2) V.equipMask(oceanMask);
+            else if(maskNum == 3) V.equipMask(yggdrasilMask);
+            else if(maskNum == 4) V.equipMask(solarMask);
+            else V.equipMask(lunaMask);
         }
     }
-    public static void CapeSelect(String role) {
+    public static void CapeSelect(String role, Heroes H, Villains V) {
         Scanner s = new Scanner(System.in);
         System.out.println("***************************************************************");
         System.out.println("Pick a cape\n1. Cape Of The Hell Fire\n2. Cape Of The Poseidon\n3. Cape Of The Gaia\n4. Cape Of The Flare\n5. Cape Of The Eclipse");
@@ -204,20 +202,20 @@ public class Lab05 {
         Cape flareCape = new Cape(100,0,50,"Cape Of The Flare");
         Cape eclipseCape = new Cape(100,0,50,"Cape Of The Eclipse");
         if(role.equals("Hero")){
-            if(capeNum == 1) Heroes.equipCape(hellCape);
-            else if(capeNum == 2) Heroes.equipCape(poseidonCape);
-            else if(capeNum == 3) Heroes.equipCape(gaiaCape);
-            else if(capeNum == 4) Heroes.equipCape(flareCape);
-            else Heroes.equipCape(eclipseCape);
+            if(capeNum == 1) H.equipCape(hellCape);
+            else if(capeNum == 2) H.equipCape(poseidonCape);
+            else if(capeNum == 3) H.equipCape(gaiaCape);
+            else if(capeNum == 4) H.equipCape(flareCape);
+            else H.equipCape(eclipseCape);
         }else{
-            if(capeNum == 1) Villains.equipCape(hellCape);
-            else if(capeNum == 2) Villains.equipCape(poseidonCape);
-            else if(capeNum == 3) Villains.equipCape(gaiaCape);
-            else if(capeNum == 4) Villains.equipCape(flareCape);
-            else Villains.equipCape(eclipseCape);
+            if(capeNum == 1) V.equipCape(hellCape);
+            else if(capeNum == 2) V.equipCape(poseidonCape);
+            else if(capeNum == 3) V.equipCape(gaiaCape);
+            else if(capeNum == 4) V.equipCape(flareCape);
+            else V.equipCape(eclipseCape);
         }
     }
-    public static void BootsSelect(String role) {
+    public static void BootsSelect(String role, Heroes H, Villains V) {
         Scanner s = new Scanner(System.in);
         System.out.println("***************************************************************");
         System.out.println("Pick a boots\n1. Lava Walker\n2. Sea Walker\n3. Tough Walker\n4. Light Walker\n5. Dark Walker");
@@ -236,20 +234,20 @@ public class Lab05 {
         Boots lightWalker = new Boots(50,0,100,"Light Walker");
         Boots darkWalker = new Boots(50,0,100,"Dark Walker");
         if(role.equals("Hero")){
-            if(bootsNum == 1) Heroes.equipBoots(lavaWalker);
-            else if(bootsNum == 2) Heroes.equipBoots(seaWalker);
-            else if(bootsNum == 3) Heroes.equipBoots(toughWalker);
-            else if(bootsNum == 4) Heroes.equipBoots(lightWalker);
-            else Heroes.equipBoots(darkWalker);
+            if(bootsNum == 1) H.equipBoots(lavaWalker);
+            else if(bootsNum == 2) H.equipBoots(seaWalker);
+            else if(bootsNum == 3) H.equipBoots(toughWalker);
+            else if(bootsNum == 4) H.equipBoots(lightWalker);
+            else H.equipBoots(darkWalker);
         }else{
-            if(bootsNum == 1) Villains.equipBoots(lavaWalker);
-            else if(bootsNum == 2) Villains.equipBoots(seaWalker);
-            else if(bootsNum == 3) Villains.equipBoots(toughWalker);
-            else if(bootsNum == 4) Villains.equipBoots(lightWalker);
-            else Villains.equipBoots(darkWalker);
+            if(bootsNum == 1) V.equipBoots(lavaWalker);
+            else if(bootsNum == 2) V.equipBoots(seaWalker);
+            else if(bootsNum == 3) V.equipBoots(toughWalker);
+            else if(bootsNum == 4) V.equipBoots(lightWalker);
+            else V.equipBoots(darkWalker);
         }
     }
-    public static void WeaponSelect(String role) {
+    public static void WeaponSelect(String role,Heroes H, Villains V) {
         Scanner s = new Scanner(System.in);
         System.out.println("***************************************************************");
         System.out.println("Pick a weapon\n1. a Pistol\n2. a Stun Gun\n3. a Baseball Bat\n4. a Butterfly Knife\n5. Martial Arts");
@@ -268,17 +266,17 @@ public class Lab05 {
         Weapon butterflyKnife = new Weapon(50,15,50,"Butterfly Knife");
         Weapon mma = new Weapon(20,0,100,"Martial Arts");
         if(role.equals("Hero")){
-            if(weaponNum == 1) Heroes.equipWeapon(pistol);
-            else if(weaponNum == 2) Heroes.equipWeapon(stunGun);
-            else if(weaponNum == 3) Heroes.equipWeapon(baseballBat);
-            else if(weaponNum== 4) Heroes.equipWeapon(butterflyKnife);
-            else Heroes.equipWeapon(mma);
+            if(weaponNum == 1) H.equipWeapon(pistol);
+            else if(weaponNum == 2) H.equipWeapon(stunGun);
+            else if(weaponNum == 3) H.equipWeapon(baseballBat);
+            else if(weaponNum== 4) H.equipWeapon(butterflyKnife);
+            else H.equipWeapon(mma);
         }else{
-            if(weaponNum == 1) Villains.equipWeapon(pistol);
-            else if(weaponNum == 2) Villains.equipWeapon(stunGun);
-            else if(weaponNum == 3) Villains.equipWeapon(baseballBat);
-            else if(weaponNum== 4) Villains.equipWeapon(butterflyKnife);
-            else Villains.equipWeapon(mma);
+            if(weaponNum == 1) V.equipWeapon(pistol);
+            else if(weaponNum == 2) V.equipWeapon(stunGun);
+            else if(weaponNum == 3) V.equipWeapon(baseballBat);
+            else if(weaponNum== 4) V.equipWeapon(butterflyKnife);
+            else V.equipWeapon(mma);
         }
     }
     public static void roleDisplay(String role, String name){
@@ -316,12 +314,20 @@ public class Lab05 {
         String role = roleSelect();
         System.out.print("Enter your name: ");
         String name = s.next();
-        if(role.equals("Hero")) new Heroes(name);
-        else new Villains(name);
-        MaskSelect(role);
-        CapeSelect(role);
-        BootsSelect(role);
-        WeaponSelect(role);
+        if(role.equals("Hero")){
+            Heroes H = new Heroes(name);
+            MaskSelect(role, H, null);
+            CapeSelect(role, H, null);
+            BootsSelect(role, H, null);
+            WeaponSelect(role, H, null);
+        }
+        else{
+            Villains V = new Villains(name);
+            MaskSelect(role, null, V);
+            CapeSelect(role, null, V);
+            BootsSelect(role, null, V);
+            WeaponSelect(role, null, V);
+        }
         System.out.println("***************************************************************");
         roleDisplay(role, name);
         System.out.println("***************************************************************");
